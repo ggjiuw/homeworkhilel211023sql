@@ -1,10 +1,7 @@
 import sqlite3
 
-
-
 with sqlite3.connect('hw_db.sqlite3') as connection:
     cursor = connection.cursor()
-
 
     query = """
         CREATE TABLE IF NOT EXISTS books(
@@ -16,7 +13,6 @@ with sqlite3.connect('hw_db.sqlite3') as connection:
     """
     cursor.execute(query)
 
-
     name = 'Історія'
     pages = 56
     price = 99
@@ -27,7 +23,6 @@ with sqlite3.connect('hw_db.sqlite3') as connection:
         VALUES (?, ?, ?)
     """
     cursor.execute(query, values)
-    
 
     values = (
         ('Моя книга', '257', '499'),
@@ -42,13 +37,12 @@ with sqlite3.connect('hw_db.sqlite3') as connection:
         ('Всесвітня Історія', '143', '100'),
         ('Історія України', '256', '79'),
     )
-    
+
     query = """
         INSERT INTO books(name, pages, price)
         VALUES (?, ?, ?)
     """
     cursor.executemany(query, values)
-    
 
     query = """
         SELECT name, pages, price
@@ -57,7 +51,6 @@ with sqlite3.connect('hw_db.sqlite3') as connection:
     """
     result = cursor.execute(query)
     print(f'дорожчі за 100 грн\n{result.fetchall()}')
-
 
     query = """
         SELECT name, pages, price
@@ -78,13 +71,11 @@ with sqlite3.connect('hw_db.sqlite3') as connection:
     result = cursor.execute(query)
     print(f'\nІсторія\n{result.fetchall()}')
 
-
     query = """
         ALTER TABLE books
         ADD COLUMN barcode REAL
     """
     cursor.execute(query)
-
 
     query = """
         UPDATE books
@@ -94,7 +85,6 @@ with sqlite3.connect('hw_db.sqlite3') as connection:
             pages > 200
     """
     cursor.execute(query)
-
 
     query = """
         DELETE FROM books
