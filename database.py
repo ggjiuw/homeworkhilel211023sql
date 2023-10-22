@@ -7,8 +7,8 @@ with sqlite3.connect('hw_db.sqlite3') as connection:
         CREATE TABLE IF NOT EXISTS books(
             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             name TEXT NOT NULL UNIQUE,
-            pages INTEGER NOT NULL CHECK (length(pages) > 0),
-            price INTEGER NOT NULL CHECK (length(price) > 0)
+            pages INTEGER NOT NULL CHECK (pages > 0),
+            price INTEGER NOT NULL CHECK (price > 0)
         )
     """
     cursor.execute(query)
